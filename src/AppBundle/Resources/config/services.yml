@@ -1,0 +1,15 @@
+services:
+  AppBundle\Services\ParentDarkVador:
+    abstract: true
+    arguments: ['%kernel.environment%']
+
+  parent.luke:
+    class: AppBundle\Services\Luke
+    parent: AppBundle\Services\ParentDarkVador
+    calls:
+      - [setFactory, ['@AppBundle\Services\Factory\LukeFactory']]
+
+  AppBundle\Services\Luke:
+    parent: AppBundle\Services\ParentDarkVador
+    calls:
+      - [setFactory, ['@AppBundle\Services\Factory\LukeFactory']]
